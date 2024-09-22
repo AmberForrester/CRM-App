@@ -2,4 +2,4 @@ venv/
 
 settings.py
 mydb.py
-__pycache__
+__pycache__/
