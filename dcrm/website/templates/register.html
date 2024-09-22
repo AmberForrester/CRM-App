@@ -3,6 +3,33 @@
 
 {% block content %}
 
+<div class='col-md-6 offset-md-3'>{% comment %} #62 - BootStrap's center class{% endcomment %}
 <h1> Register </h1>
+<br/>
 
+<form method='POST' action=''>
+    {% csrf_token %} {% comment %} #63 - Always need CSRF Token Cross Site Request Forgury Token required when creating a form. {% endcomment %}
+
+    {% if form.errors %} {% comment %} #66 - Add in if there are form errors, it will show the user which errors to correct. {% endcomment %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  Your Form Has Errors
+			  {% for field in form %}
+			  	{% if field.errors %}
+			  		{{ field.errors }}
+			  	{% endif %}
+			  {% endfor %}
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endif %}
+
+    {{ form.as_p  }} {% comment %} #65 - Add Form. {% endcomment %} 
+
+
+    <br/> {% comment %} #64 - Add Submit button. {% endcomment %}    
+    <button type="submit" class="btn btn-secondary">Register</button>
+
+</form>
+
+
+</div>
 {% endblock %}

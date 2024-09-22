@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect #37 - import redirect function.
 from django.contrib.auth import authenticate, login, logout #25 - Import Django Authentication.
 from django.contrib import messages #26 - Flash successfull messages for login, logout, and registration.
+from .forms import SignUpForm # 55 - Import form just created in website/forms.py file.
 
 
 
@@ -32,4 +33,19 @@ def logout_user(request):
 
 #44 - Define Register User.
 def register_user(request):
-    return render(request, 'register.html', {})
+    if request.method == 'POST': #56 - Someone filling out our SignUpForm its POST method.
+        form = SignUpForm(request.POST)
+        if form.is_valid(): #57 - Find out if what the user put in the form is valid.
+            form.save()
+            #58 - Authenticate and login.
+            username = form.cleaned_data['username'] #59 - form.cleaned_data takes whatever they posted on the form and assigns to the username variable.
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, f'You have successfully registered as a new user! Welcome {username}!') # Using the f-string 'formatted string literal' to have Python replace {username} with the value of the username variable. 
+            return redirect('home')
+    else:
+        form = SignUpForm() #60 - No need to pass in a request.POST, because the user has not filled out the form yet. 
+        return render(request, 'register.html', {'form':form}) #61 - Pass in the SignUpForm into the webpage. 
+    
+    return render(request, 'register.html', {'form':form}) #67 - Handle the Error on webpage with register.html error code. 
