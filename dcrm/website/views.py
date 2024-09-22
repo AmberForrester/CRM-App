@@ -24,9 +24,8 @@ def home(request):
     else: #If not logging in, and just going to the page they are getting.
         return render(request, 'home.html', {}) #14 - Pass an empty focus Python dict {}.
 
-#27 - Define login, logout views.
-def login_user(request):
-    pass
-
+#27 - Define logout views.
 def logout_user(request):
-    pass
+    logout(request) #39 - Logout function by import
+    messages.success(request, 'You have been successfully logged out!')
+    return(redirect('home'))
