@@ -24,6 +24,12 @@
             <a class="nav-link" href="{% url 'home' %}">Login</a>
           </li>
 
+          {% comment %} #46 - Give someone NOT logged in the opportunity to register {% endcomment %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+
           {% endif %}
           
           

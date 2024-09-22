@@ -29,3 +29,7 @@ def logout_user(request):
     logout(request) #39 - Logout function by import
     messages.success(request, 'You have been successfully logged out!')
     return(redirect('home'))
+
+#44 - Define Register User.
+def register_user(request):
+    return render(request, 'register.html', {})
