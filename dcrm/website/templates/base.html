@@ -19,6 +19,20 @@
 
     <div class='container'>
         <br/>
+
+        {% if messages %}  {% comment %} #37 - add Django tag for messages defined in views.py {% endcomment %}
+
+            {% for message in messages %}
+            {% comment %} #38 - Bootstrap Alert Field {% endcomment %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            {% endfor %}
+
+        {% endif %}
+
         {% block content %} {% comment %} #20 - add content block {% endcomment %}
 
         {% endblock %}
