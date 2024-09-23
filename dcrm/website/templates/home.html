@@ -60,29 +60,29 @@
     {% else %}
 
     <div class='col-md-6 offset-md-3'>
-    <h1> Login </h1> 
-    <br/>
-    {% comment %} #31 - Create a form with a method that posts to the server when a user fills it out, and brings user back to home. {% endcomment %}
-    <form method='POST' action='{% url 'home' %}'>
-        {% csrf_token %} {% comment %} #32 - Always need CSRF Token Cross Site Request Forgury Token required when creating a form. {% endcomment %}
+      <h1> Login </h1> 
+      <br/>
+      {% comment %} #31 - Create a form with a method that posts to the server when a user fills it out, and brings user back to home. {% endcomment %}
+      <form method='POST' action='{% url 'home' %}'>
+          {% csrf_token %} {% comment %} #32 - Always need CSRF Token Cross Site Request Forgury Token required when creating a form. {% endcomment %}
 
-        {% comment %} #33 - Grab Form from BootStrap and customize {% endcomment %}
-            <div class="mb-3">
-              
-              <input type="text" class="form-control" name="username" placeholder="Username" required>
-              
-            </div>
-            <br/>
+          {% comment %} #33 - Grab Form from BootStrap and customize {% endcomment %}
+              <div class="mb-3">
+                
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+                
+              </div>
+              <br/>
 
-            <div class="mb-3">
+              <div class="mb-3">
+                
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+              </div>
+              <br/>
               
-              <input type="password" class="form-control" name="password" placeholder="Password" required>
-            </div>
-            <br/>
-            
-            <button type="submit" class="btn btn-secondary">Login</button>
-    </form>
-    
+              <button type="submit" class="btn btn-secondary">Login</button>
+      </form>
+    </div>
 
 {% endif %}
 

@@ -90,3 +90,20 @@ def add_record(request):
     else:
         messages.success(request, 'Sorry, you must be logged in to create a new customer record.')
         return(redirect('home'))
+    
+#109 - Define update record function
+def update_record(request, pk):
+    if request.user.is_authenticated:
+        current_record = Record.objects.get(id=pk) #110 - Assign the record according to the id and primary key and assign it this variable current_record.
+        
+        form = AddRecordForm(request.POST or None, instance=current_record) #111 - Pass an instance of the current_record with the primary key we have passed into the page, by passing it back into the page with an instance of itself.
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Customer Record has been updated!')
+            return(redirect('home'))
+        return render(request, 'update_record.html', {'form':form}) #112
+    else: 
+        messages.success(request, 'Sorry, you must be logged in to update a customer record.')
+        return(redirect('home'))
+             
