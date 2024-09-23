@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% comment %} #100 - Extend styling  {% endcomment %}
 
+{% block title %}Add Customer Record{% endblock %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="icon" href="{% static 'favicon/django_favicon.png' %}" type="image/png">
+{% endblock %}
+
 {% comment %} #99 - Add Record html template {% endcomment %}
 {% block content %}
 

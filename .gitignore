@@ -1,5 +1,7 @@
 venv/
 
+Lib
+Scripts
+__pycache__/
 settings.py
 mydb.py
-__pycache__/
