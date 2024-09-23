@@ -2,11 +2,15 @@ from django.shortcuts import render, redirect #37 - import redirect function.
 from django.contrib.auth import authenticate, login, logout #25 - Import Django Authentication.
 from django.contrib import messages #26 - Flash successfull messages for login, logout, and registration.
 from .forms import SignUpForm # 55 - Import form just created in website/forms.py file.
+from .models import Record #73 - Import Record data. 
 
 
 
 #13 - Define homepage view
 def home(request):
+    
+    #72 - View Model data on the homepage after logged in.
+    records = Record.objects.all()
     
     #34 - Check to see if logging in. If logging in = posting.
     if request.method == 'POST':
@@ -23,7 +27,8 @@ def home(request):
             messages.success(request, 'There was an error logging in, please try again...')
             return(redirect('home'))
     else: #If not logging in, and just going to the page they are getting.
-        return render(request, 'home.html', {}) #14 - Pass an empty focus Python dict {}.
+        return render(request, 'home.html', {'records':records}) #14 - Pass an empty focus Python dict {}.
+    #74 - If the user is already logged in we can pass in the records variable to the homepage so they can view the list of Records. 
 
 #27 - Define logout views.
 def logout_user(request):

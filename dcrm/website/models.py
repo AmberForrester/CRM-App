@@ -13,7 +13,7 @@ class Record(models.Model):
     province = models.CharField(max_length=50)
     postalcode = models.CharField(max_length=20)
     
-#69 - Calling one of these records defined above will call the first and lastname. 
+#69 - Calling one of these records defined above will only call the first and lastname. 
     def __str__(self):
         return(f'{self.first_name} {self.last_name}')
     
