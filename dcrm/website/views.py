@@ -54,3 +54,14 @@ def register_user(request):
         return render(request, 'register.html', {'form':form}) #61 - Pass in the SignUpForm into the webpage. 
     
     return render(request, 'register.html', {'form':form}) #67 - Handle the Error on webpage with register.html error code. 
+
+#82 - Define customer_record corresponding with primary keys
+def customer_record(request, pk):
+    #83 - Check if person is logged in first.
+    if request.user.is_authenticated:
+        #84 - Then look up the record.
+        customer_record = Record.objects.get(id=pk) # Call a single record with Record.objects.get(id=pk) and pass on the variables of id attached to a pk. 
+        return render(request, 'record.html', {'customer_record':customer_record}) #85 
+    else: 
+        messages.success(request, 'Sorry, you must be logged in to view that page.') #86
+        return redirect('home')
