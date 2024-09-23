@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% comment %} #100 - Extend styling  {% endcomment %}
+
+{% comment %} #99 - Add Record html template {% endcomment %}
+{% block content %}
+
+{% comment %}  {% endcomment %}
+
+<div class='col-md-6 offset-md-3'>
+<h1> Add Customer Record: </h1>
+<br/>
+
+{% comment %} #101 - Create a Django form for this. {% endcomment %}
+<form method='POST' action='{% url 'add_record' %}'>
+    {% csrf_token %} {% comment %} #102 - Always need CSRF Token Cross Site Request Forgury Token required when creating a form. {% endcomment %}
+
+    {{ form.as_p }}
+
+        
+
+        <br/>
+        <button type="submit" class="btn btn-secondary">Add Customer Record</button>
+</form>
+
+
+
+{% endblock %}

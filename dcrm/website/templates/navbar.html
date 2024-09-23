@@ -14,9 +14,15 @@
             {% comment %} #40 - Only show the logout if they are logged in {% endcomment %}
           {% if user.is_authenticated %}
 
+          {% comment %} #100 - Add Customer option ONLY if logged in. {% endcomment %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_record' %}">Add Customer</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
+
 
           {% else %} {% comment %} #41 - If they are NOT logged in, show log in {% endcomment %}
 

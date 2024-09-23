@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect #37 - import redirect function.
 from django.contrib.auth import authenticate, login, logout #25 - Import Django Authentication.
 from django.contrib import messages #26 - Flash successfull messages for login, logout, and registration.
-from .forms import SignUpForm # 55 - Import form just created in website/forms.py file.
+from .forms import SignUpForm, AddRecordForm # 55 - Import form just created in website/forms.py file.                  #105 - import the AddRecordForm so it can be used.
 from .models import Record #73 - Import Record data. 
 
 
@@ -69,10 +69,24 @@ def customer_record(request, pk):
 #95 - Define delete_customer corresponding with primary keys of record we want to delete.
 def delete_record(request, pk):
     if request.user.is_authenticated:
-            delete_it = Record.objects.get(id=pk)
-            delete_it.delete()
-            messages.success(request, 'Record has been deleted successfully.')
-            return(redirect('home'))
+        delete_it = Record.objects.get(id=pk)
+        delete_it.delete()
+        messages.success(request, 'Record has been deleted successfully.')
+        return(redirect('home'))
     else:
-            messages.success(request, 'Sorry, you must be logged in to delete Records.')
-            return(redirect('home'))
+        messages.success(request, 'Sorry, you must be logged in to delete Records.')
+        return(redirect('home'))
+        
+#98 - Define add record function
+def add_record(request):
+    form = AddRecordForm(request.POST or None) #106 - Are they adding a new record(posting), and if not just go to the webpage.
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, 'New customer record added.')
+                return redirect('home')
+        return render(request, 'add_record.html', {'form':form})
+    else:
+        messages.success(request, 'Sorry, you must be logged in to create a new customer record.')
+        return(redirect('home'))
