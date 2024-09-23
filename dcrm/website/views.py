@@ -55,7 +55,7 @@ def register_user(request):
     
     return render(request, 'register.html', {'form':form}) #67 - Handle the Error on webpage with register.html error code. 
 
-#82 - Define customer_record corresponding with primary keys
+#82 - Define customer_record corresponding with primary keys.
 def customer_record(request, pk):
     #83 - Check if person is logged in first.
     if request.user.is_authenticated:
@@ -65,3 +65,14 @@ def customer_record(request, pk):
     else: 
         messages.success(request, 'Sorry, you must be logged in to view that page.') #86
         return redirect('home')
+    
+#95 - Define delete_customer corresponding with primary keys of record we want to delete.
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+            delete_it = Record.objects.get(id=pk)
+            delete_it.delete()
+            messages.success(request, 'Record has been deleted successfully.')
+            return(redirect('home'))
+    else:
+            messages.success(request, 'Sorry, you must be logged in to delete Records.')
+            return(redirect('home'))

@@ -2,8 +2,6 @@
 
 {% comment %} #87 - create a record template after specific record is pressed to view. {% endcomment %}
 
-{% comment %}  {% endcomment %}
-
 {% block content %}
 
 
@@ -31,9 +29,10 @@
 
   <br/>
 
-  {% comment %} #93 - Back and Delete button {% endcomment %}
+  {% comment %} #93 - Back and Delete button. {% endcomment %}
   <a href='{% url 'home' %}' class="btn btn-secondary">Back To Records</a>
 
-  <a href='' class="btn btn-danger">Delete</a>
+  {% comment %} #96 - put an action for delete with the button. {% endcomment %}
+  <a href='{% url 'delete_record' customer_record.id %}' class="btn btn-danger">Delete</a>
 
 {% endblock %}
