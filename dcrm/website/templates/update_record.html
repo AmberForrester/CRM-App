@@ -19,6 +19,9 @@
         {{ form.as_p }}
 
             <br/>
+            {% comment %} #118 - Back button. {% endcomment %}
+            <a href='{% url 'home' %}' class="btn btn-secondary">Back To Records</a>
+
             <button type="submit" class="btn btn-secondary">Update Customer Record</button>
     </form>
 
