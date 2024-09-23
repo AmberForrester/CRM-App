@@ -162,7 +162,7 @@ I appreciate you!
 
 ## License
 
-Distributed under the MIT License. See `License.txt` for more information.
+Distributed under the MIT License. See `License` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

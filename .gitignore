@@ -1,7 +1,12 @@
+# Ignore virtual environment files
 venv/
+Lib/
+Scripts/
 
-Lib
-Scripts
+# Ignore all __pycache__ folders
 __pycache__/
+website/__pycache__/
+
+# Ignore sensitive or specific project files
 settings.py
 mydb.py
