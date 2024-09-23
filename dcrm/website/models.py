@@ -16,5 +16,3 @@ class Record(models.Model):
 #69 - Calling one of these records defined above will only call the first and lastname. 
     def __str__(self):
         return(f'{self.first_name} {self.last_name}')
-    
-    

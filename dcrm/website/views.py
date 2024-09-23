@@ -106,4 +106,3 @@ def update_record(request, pk):
     else: 
         messages.success(request, 'Sorry, you must be logged in to update a customer record.')
         return(redirect('home'))
-             
